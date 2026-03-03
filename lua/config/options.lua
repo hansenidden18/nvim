@@ -1,45 +1,61 @@
 local opt = vim.opt
 
--- Tab / Indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.expandtab = true
-opt.smartindent = true
-opt.wrap = false
-
-
--- Search
-opt.incsearch = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
-
--- Appearance
-opt.number = true
+-- line numbers
 opt.relativenumber = true
-opt.termguicolors = true
-opt.colorcolumn = '100'
-opt.signcolumn = "yes"
-opt.cmdheight = 1
-opt.scrolloff = 10
-opt.completeopt = "menuone,noinsert,noselect"
+opt.number = true
 
--- Behaviour
-opt.hidden = true
-opt.errorbells = false
+-- tabs & indentation
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.autoindent = true
+
+-- line wrapping
+opt.wrap = true
+opt.linebreak = true
+
+-- backup
 opt.swapfile = false
 opt.backup = false
-opt.undodir = vim.fn.expand("~/.vim/undodir")
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
+
+-- search
+opt.hlsearch = false
+opt.incsearch = true
+
+-- search settings
+opt.ignorecase = true
+opt.smartcase = true
+
+-- appearance
+opt.termguicolors = true
+
+-- scroll
+opt.scrolloff = 8
+
+-- backspace
 opt.backspace = "indent,eol,start"
+
+-- clipboard (merge vim yank register with system clipboard)
+-- opt.clipboard:append("unnamedplus")
+-- instead, <leader> y is used to copy from vim into clipboard
+-- and Ctrl Shift v to paste from system clipboard to vim buffer
+
+-- split windows
 opt.splitright = true
 opt.splitbelow = true
-opt.autochdir = false
-opt.iskeyword:append("-")
-opt.mouse:append('a')
-opt.clipboard:append("unnamedplus")
-opt.modifiable = true
-opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-opt.encoding = "UTF-8"
 
+-- fix comment issue
+vim.cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
+
+opt.updatetime = 50
+
+opt.foldcolumn = "1" -- '0' is not bad
+opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevelstart = 99
+opt.foldenable = true
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
