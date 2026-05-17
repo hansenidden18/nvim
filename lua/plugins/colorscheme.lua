@@ -1,5 +1,5 @@
 function Color(color)
-	color = color or "catppuccin" -- default
+	color = color or "cyberdream" -- default
 
 	if color == "base16" then
 		local fav_base16_colors = {
@@ -40,6 +40,19 @@ function Color(color)
 				end,
 			},
 		})
+	elseif color == "onedark" then
+		require("onedark").setup({
+			style = "darker", -- dark, darker, cool, deep, warm, warmer, light
+			transparent = true, -- enforced transparent background (see CLAUDE.md)
+			term_colors = true,
+		})
+	elseif color == "cyberdream" then
+		require("cyberdream").setup({
+			variant = "default", -- default, auto, light
+			transparent = true, -- keeps background black (see CLAUDE.md)
+			italic_comments = true,
+			borderless_pickers = false,
+		})
 	end
 
 	vim.cmd.colorscheme(color)
@@ -57,6 +70,14 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+	},
+	{
+		"navarasu/onedark.nvim",
+		name = "onedark",
+	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		name = "cyberdream",
 		priority = 1000,
 		lazy = false,
 		config = function()

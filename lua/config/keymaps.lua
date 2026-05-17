@@ -2,8 +2,8 @@ local keymap = vim.keymap
 
 keymap.set("i", "<C-H>", "<C-w>") -- C-Backspace
 
-keymap.set("n", "<C-w>%", "<C-w>v") -- split window vertically
-keymap.set("n", '<C-w>"', "<C-w>s") -- split window horizontally
+keymap.set("n", "<C-w>|", "<C-w>v") -- split window vertically (side by side)
+keymap.set("n", "<C-w>-", "<C-w>s") -- split window horizontally (top/bottom)
 
 -- quickfix list navigation
 keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
@@ -55,7 +55,7 @@ keymap.set(
 	{ noremap = true, silent = true }
 )
 
--- auto complete curly brackets
+-- auto complete curly brackets (nvim-autopairs handles (), [], "", '' etc.)
 keymap.set("i", "{<CR>", "{<CR>}<Esc>O", { noremap = true })
 
 -- make j and k move by visual line, not actual line, when text is soft-wrapped

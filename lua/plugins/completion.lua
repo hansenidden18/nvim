@@ -10,9 +10,15 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"honza/vim-snippets",
+		"windwp/nvim-autopairs",
 	},
 	config = function()
 		local cmp = require("cmp")
+		local autopairs = require("nvim-autopairs")
+		autopairs.setup({
+			check_ts = true, -- use treesitter to check for pairs
+		})
+		cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
 
 		cmp.setup({
 			sources = {
